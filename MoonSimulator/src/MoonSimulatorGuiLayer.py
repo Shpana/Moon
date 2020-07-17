@@ -63,7 +63,7 @@ class MoonSimulatorGuiLayer(Engine.Layer):
             if (event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == self.m_ResumButton):
                 MoonSimulatorLayer.ResumeSimulation()
 
-            elif (event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == self.m_PauseButton):
+            if (event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == self.m_PauseButton):
                 MoonSimulatorLayer.PauseSimulation()
 
     def OnGuiRender(self, manager: pygame_gui.UIManager)-> None:

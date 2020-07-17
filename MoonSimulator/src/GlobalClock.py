@@ -17,3 +17,7 @@ class GlobalClock(object):
     @staticmethod
     def GetDays()-> int:
         return GlobalClock.s_Hours // 24
+
+    @staticmethod
+    def GetYears()-> int:
+        return GlobalClock.GetDays() // 365
