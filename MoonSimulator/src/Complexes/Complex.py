@@ -1,12 +1,12 @@
 import pygame
 
+from .NavigationNode import NavigationNode
 
-class Complex(object):
 
-    def __init__(self, position: tuple)-> None:
-        self.m_Radius = 10
-        self.m_Position = position
-        self.m_Active = True
+class Complex(NavigationNode):
+
+    def __init__(self, name: str, position: tuple)-> None:
+        super().__init__(name, position, 10)
 
         self.m_ComplexBehaivour = None
         self.m_PorductionBehaivour = None
@@ -16,12 +16,6 @@ class Complex(object):
     def OnUpdate(self, dt: float)-> None:
         pass
 
-    def OnRender(self, surface: pygame.Surface)-> None:
-        pass
-
-    def OnEvent(self, event: pygame.event.Event)-> None:
-        pass
-
     def OnBehaivour(self)-> None:
         if (self.IsActive()):
             self.m_ComplexBehaivour.OnBehaivour()
@@ -29,8 +23,8 @@ class Complex(object):
             self.m_ExpensesBehaivour.OnBehaivour()
             self.m_DurabilityBehaivour.OnBehaivour()
 
-    def IsActive(self)-> bool:
-        return self.m_Active
+    def OnEvent(self, event: pygame.event.Event)-> None:
+        pass
 
     def IsBroken(self)-> bool:
         return self.m_DurabilityBehaivour.IsBroken()

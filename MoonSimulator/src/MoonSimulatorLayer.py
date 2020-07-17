@@ -6,6 +6,8 @@ import Engine
 
 from GlobalClock import GlobalClock
 
+from Complexes.Map import Map
+
 
 class MoonSimulatorLayer(Engine.Layer):
 
@@ -15,8 +17,10 @@ class MoonSimulatorLayer(Engine.Layer):
         self.m_SimulationSurfacePosition = (0, 0)
         self.m_Color = (35, 45, 51)
 
+        self.m_Map = Map()
+        self.m_Map.LoadMapFromJson("Data/TestMap.json")
+
         self.m_SimulationSurface = pygame.Surface((1000, 700))
-        self.m_SimulationSurface.fill(self.m_Color)
 
     def OnUpdate(self, dt: float)-> None:
         windowSurface = Engine.WindowToolKit.GetWindowSurface()
@@ -24,7 +28,14 @@ class MoonSimulatorLayer(Engine.Layer):
         if (not MoonSimulatorLayer.s_Paused):
             GlobalClock.Tick()
 
+            self.m_SimulationSurface.fill(self.m_Color)
+            self.m_Map.OnUpdate(dt)
+            self.m_Map.OnRender(self.m_SimulationSurface)
+
         windowSurface.blit(self.m_SimulationSurface, self.m_SimulationSurfacePosition)
+
+    def OnEvent(self, event: pygame.event.Event)-> None:
+        self.m_Map.OnEvent(event)
 
     @staticmethod
     def ResumeSimulation()-> None:
