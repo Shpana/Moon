@@ -7,6 +7,10 @@ class GlobalClock(object):
         GlobalClock.s_Hours += 1
 
     @staticmethod
+    def GetDate()-> str:
+        return f"D:{GlobalClock.s_Hours // 24}, T:{GlobalClock.s_Hours % 24}.00"
+
+    @staticmethod
     def GetMinutes()-> int:
         return GlobalClock.s_Hours * 60
 

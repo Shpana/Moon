@@ -4,7 +4,7 @@ import json
 
 from .NavigationNode import NavigationNode
 
-from .Complex import Complex
+from Complexes.ComplexType import ComplexType
 
 
 class Map(object):
@@ -18,6 +18,9 @@ class Map(object):
 
     def OnRender(self, surface: pygame.Surface)-> None:
         for node in self.m_Nodes:
+            node.OnRenderConnections(surface)
+
+        for node in self.m_Nodes:
             node.OnRender(surface)
 
     def OnEvent(self, event: pygame.event.Event)-> None:
@@ -30,7 +33,7 @@ class Map(object):
         data = json.load(file)
 
         for key in data.keys():
-            self.m_Nodes.append(Complex(key, data[key]["index"], data[key]["position"]))
+            self.m_Nodes.append(ComplexType.GetComplexByType(data[key]["type"])(key, data[key]["position"]))
 
         for key in data.keys():
             currentNode = self.m_Nodes[data[key]["index"]]

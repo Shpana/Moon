@@ -6,26 +6,26 @@ class NavigationNode : pass
 
 class NavigationNode(object):
 
-    def __init__(self, name: str, index: int, position: tuple, size: float)-> None:
+    def __init__(self, name: str, position: tuple, size: float)-> None:
         self.m_Name = name
-        self.m_NavigationIndex = index
 
         self.m_Position = pygame.math.Vector2(position)
         self.m_Size = size
         self.m_Color = (255, 255, 255)
 
-        self.m_Active = False
+        self.m_Active = True
         self.m_Neighbors = list()
 
     def OnUpdate(self, dt: float)-> None:
         pass
 
     def OnRender(self, surface: pygame.Surface)-> None:
-        for neighbor in self.m_Neighbors:
-            pygame.draw.line(surface, self.m_Color, self.m_Position, neighbor.GetPosition())
-
         pygame.draw.rect(surface, self.m_Color, (
             *(self.m_Position - pygame.math.Vector2(self.m_Size / 2)), self.m_Size, self.m_Size))
+
+    def OnRenderConnections(self, surface: pygame.Surface)-> None:
+        for neighbor in self.m_Neighbors:
+            pygame.draw.line(surface, self.m_Color, self.m_Position, neighbor.GetPosition())
 
     def OnEvent(self, event: pygame.event.Event)-> None:
         pass
@@ -38,9 +38,6 @@ class NavigationNode(object):
 
     def GetName(self)-> str:
         return self.m_Name
-
-    def GetNavigationIndex(self)-> int:
-        return self.m_NavigationIndex
 
     def GetNeighbors(self)-> list:
         return self.m_Neighbors

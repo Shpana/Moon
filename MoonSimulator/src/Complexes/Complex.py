@@ -1,17 +1,18 @@
 import pygame
 
-from .NavigationNode import NavigationNode
+from Navigation.NavigationNode import NavigationNode
 
+from .Behaivour.NoBehaivours import *
 
 class Complex(NavigationNode):
 
-    def __init__(self, name: str, index: int, position: tuple)-> None:
-        super().__init__(name, index, position, 10)
+    def __init__(self, name: str, position: tuple, size: int = 10)-> None:
+        super().__init__(name, position, size)
 
-        self.m_ComplexBehaivour = None
-        self.m_PorductionBehaivour = None
-        self.m_ExpensesBehaivour = None
-        self.m_DurabilityBehaivour = None
+        self.m_ComplexBehaivour = NoComplexBehaivour()
+        self.m_PorductionBehaivour = NoPorductionBehaivour()
+        self.m_ExpensesBehaivour = NoExpensesBehaivour()
+        self.m_DurabilityBehaivour = NoDurabilityBehaivour()
 
     def OnUpdate(self, dt: float)-> None:
         if (self.IsActive()):

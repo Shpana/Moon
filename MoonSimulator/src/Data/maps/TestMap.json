@@ -1,0 +1,30 @@
+{
+    "ResidentialComplex":
+    {
+        "index"     : 0,
+        "type"      : "residential",
+        "position"  : [100, 100],
+        "neighbors" : [3]
+    },
+    "TitaniumComplex1":
+    {
+        "index"     : 1,
+        "type"      : "titanium",
+        "position"  : [100, 600],
+        "neighbors" : [3]
+    },
+    "TitaniumComplex2":
+    {
+        "index"     : 2,
+        "type"      : "titanium",
+        "position"  : [600, 350],
+        "neighbors" : [3]
+    },
+    "Node1":
+    {
+        "index"     : 3,
+        "type"      : "node",
+        "position"  : [350, 350],
+        "neighbors" : [0, 1, 2]
+    }
+}

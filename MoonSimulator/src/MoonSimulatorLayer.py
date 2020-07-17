@@ -6,9 +6,11 @@ import Engine
 
 from GlobalClock import GlobalClock
 
-from Complexes.Map import Map
+from DataLogger import DataLogger
 
-from Complexes.MapNavigator import MapNavigator
+from Navigation.Map import Map
+
+from Navigation.MapNavigator import MapNavigator
 
 
 class MoonSimulatorLayer(Engine.Layer):
@@ -16,13 +18,15 @@ class MoonSimulatorLayer(Engine.Layer):
     s_Paused: bool = False
 
     def OnAttach(self)-> None:
+        DataLogger.Init("testMap.log", "TestLog")
         self.m_SimulationSurfacePosition = (0, 0)
         self.m_Color = (35, 45, 51)
 
         self.m_Map = Map()
-        self.m_Map.LoadMapFromJson("Data/TestMap.json")
+        self.m_Map.LoadMapFromJson("Data/maps/TestMap.json")
 
         MapNavigator.Init(self.m_Map)
+        print(MapNavigator.FindPath(MapNavigator.FindNodeByName("ResidentialComplex"), MapNavigator.FindNodeByName("TitaniumComplex2")))
 
         self.m_SimulationSurface = pygame.Surface((1000, 700))
 
