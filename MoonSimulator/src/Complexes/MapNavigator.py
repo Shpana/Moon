@@ -6,7 +6,7 @@ from .Map import Map
 from .NavigationNode import NavigationNode
 
 
-class MapController(object):
+class MapNavigator(object):
 
     s_MapHandle: Map = None
 
@@ -14,9 +14,9 @@ class MapController(object):
 
     @staticmethod
     def Init(map: Map)-> None:
-        MapController.s_MapHandle = map
+        MapNavigator.s_MapHandle = map
 
-        MapController.CalculateNavigationHeights_(map)
+        MapNavigator.CalculateNavigationHeights_(map)
 
     @staticmethod
     def CalculateDistance(start: NavigationNode, end: NavigationNode)-> float:
@@ -27,14 +27,14 @@ class MapController(object):
 
     @staticmethod
     def FindNodeByName(name: str)-> None:
-        for node in MapController.s_MapHandle.GetNodes():
+        for node in MapNavigator.s_MapHandle.GetNodes():
             if (node.GetName() == name):
                 return node
 
     @staticmethod
     def FindPath(start: NavigationNode, end: NavigationNode)-> list:
-        nodes = MapController.s_MapHandle.GetNodes()
-        navigationHeights = MapController.s_NavigationWeights
+        nodes = MapNavigator.s_MapHandle.GetNodes()
+        navigationHeights = MapNavigator.s_NavigationWeights
 
         nodesToVisit = {start.GetName()}
         visitedNodes = set()
@@ -66,25 +66,25 @@ class MapController(object):
                     nodesToVisit.add(neighbour)
                     tentativeParents[neighbour] = current
 
-        return MapController.DeconstructPath_(tentativeParents, end.GetName())
+        return MapNavigator.DeconstructPath_(tentativeParents, end.GetName())
 
     @staticmethod
     def CalculateNavigationHeights_(map: Map)-> None:
         for node in map.GetNodes():
 
-            MapController.s_NavigationWeights[node.GetName()] = dict()
+            MapNavigator.s_NavigationWeights[node.GetName()] = dict()
 
             for neighbor in node.GetNeighbors():
-                distance = MapController.CalculateDistance(node, neighbor)
+                distance = MapNavigator.CalculateDistance(node, neighbor)
 
-                MapController.s_NavigationWeights[node.GetName()][neighbor.GetName()] = distance
+                MapNavigator.s_NavigationWeights[node.GetName()][neighbor.GetName()] = distance
 
     @staticmethod
     def DeconstructPath_(tentativeParents: dict, end: str)-> list:
         cursor = end
         path = []
         while cursor:
-            path.append(MapController.FindNodeByName(cursor))
+            path.append(MapNavigator.FindNodeByName(cursor))
             cursor = tentativeParents.get(cursor)
 
         return list(reversed(path))
