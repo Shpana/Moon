@@ -5,8 +5,8 @@ from .NavigationNode import NavigationNode
 
 class Complex(NavigationNode):
 
-    def __init__(self, name: str, position: tuple)-> None:
-        super().__init__(name, position, 10)
+    def __init__(self, name: str, index: int, position: tuple)-> None:
+        super().__init__(name, index, position, 10)
 
         self.m_ComplexBehaivour = None
         self.m_PorductionBehaivour = None
@@ -14,9 +14,6 @@ class Complex(NavigationNode):
         self.m_DurabilityBehaivour = None
 
     def OnUpdate(self, dt: float)-> None:
-        pass
-
-    def OnBehaivour(self)-> None:
         if (self.IsActive()):
             self.m_ComplexBehaivour.OnBehaivour()
             self.m_PorductionBehaivour.OnBehaivour()

@@ -1,5 +1,8 @@
+import math
 import pygame
 import json
+
+from .NavigationNode import NavigationNode
 
 from .Complex import Complex
 
@@ -27,7 +30,7 @@ class Map(object):
         data = json.load(file)
 
         for key in data.keys():
-            self.m_Nodes.append(Complex(key, data[key]["position"]))
+            self.m_Nodes.append(Complex(key, data[key]["index"], data[key]["position"]))
 
         for key in data.keys():
             currentNode = self.m_Nodes[data[key]["index"]]
@@ -36,3 +39,6 @@ class Map(object):
                 currentNode.AddNeighbor(self.m_Nodes[data[key]["neighbors"][neighbor]])
 
         file.close()
+
+    def GetNodes(self)-> list:
+        return self.m_Nodes

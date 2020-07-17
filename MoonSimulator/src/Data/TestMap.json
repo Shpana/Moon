@@ -9,12 +9,12 @@
     {
         "index"     : 1,
         "position"  : [150, 150],
-        "neighbors" : [0]
+        "neighbors" : [0, 2]
     },
     "Node2":
     {
         "index"     : 2,
-        "position"  : [550, 150],
-        "neighbors" : [0]
+        "position"  : [350, 150],
+        "neighbors" : [0, 1]
     }
 }

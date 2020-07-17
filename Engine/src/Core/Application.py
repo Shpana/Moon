@@ -35,6 +35,8 @@ class Application(object):
         self.m_EventStack = Engine.Events.EventStack()
         self.m_Running = True
         self.m_Minimized = False
+        
+        Engine.Log.Info("Application was created successfully.")
 
     def __del__(self)-> None:
         """ Deinitializes the application
@@ -136,7 +138,6 @@ class ApplicationRegistry(object):
         # Indicates that the application has already been created
         ApplicationRegistry.s_WasCreated = True
         ApplicationRegistry.s_ApplicationInstance = Application(props)
-        Engine.Log.Info("Application was created successfully.")
 
         return ApplicationRegistry.GetApplication()
 

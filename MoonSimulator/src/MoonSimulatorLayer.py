@@ -8,6 +8,8 @@ from GlobalClock import GlobalClock
 
 from Complexes.Map import Map
 
+from Complexes.MapController import MapController
+
 
 class MoonSimulatorLayer(Engine.Layer):
 
@@ -19,6 +21,8 @@ class MoonSimulatorLayer(Engine.Layer):
 
         self.m_Map = Map()
         self.m_Map.LoadMapFromJson("Data/TestMap.json")
+
+        MapController.Init(self.m_Map)
 
         self.m_SimulationSurface = pygame.Surface((1000, 700))
 
