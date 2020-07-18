@@ -9,7 +9,7 @@ from .ComplexContext import ComplexContext
 
 class Complex(NavigationNode):
 
-    def __init__(self, name: str, position: tuple, size: int = 10)-> None:
+    def __init__(self, name: str, position: tuple, size: int)-> None:
         super().__init__(name, position, size)
         self.m_Active = True
 

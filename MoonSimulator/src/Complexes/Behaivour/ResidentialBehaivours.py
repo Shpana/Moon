@@ -21,10 +21,7 @@ class ResidentialDurabilityBehaivour(IDurabilityBehaivour):
 class ResidentialExpensesBehaivour(IExpensesBehaivour):
 
     def OnBehaivour(self)-> None:
-        if (ResourcesData.CanAddElectricity()):
-            ResourcesData.AddElectricity(-1.7, "Затраты на обслуживание жилого комплеса")
-        else:
-            pass
+        pass
 
 class ResidentialPorductionBehaivour(IPorductionBehaivour):
 

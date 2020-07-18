@@ -27,4 +27,4 @@ class TitaniumExpensesBehaivour(IExpensesBehaivour):
 class TitaniumPorductionBehaivour(IPorductionBehaivour):
 
     def OnBehaivour(self)-> None:
-        ResourcesData.AddTitnium(0.5, "Добыто титана")
+        pass

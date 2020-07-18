@@ -24,7 +24,7 @@ class NavigationNode(object):
 
     def OnRenderConnections(self, surface: pygame.Surface)-> None:
         for neighbor in self.m_Neighbors:
-            pygame.draw.line(surface, self.m_Color, self.m_Position, neighbor.GetPosition())
+            pygame.draw.aaline(surface, self.m_Color, self.m_Position, neighbor.GetPosition())
 
     def OnEvent(self, event: pygame.event.Event)-> None:
         pass

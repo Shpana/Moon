@@ -1,12 +1,15 @@
+from Settings import Settings
+
+
 class Time : pass
 
 class GlobalClock(object):
 
-    s_Time: int = 0
+    s_Minutes: int = 0
 
     @staticmethod
     def Tick()-> None:
-        GlobalClock.s_Time += 1
+        GlobalClock.s_Minutes += Settings.GetTickTimeInMinutes()
 
     @staticmethod
     def GetCurrentTime()-> Time:
@@ -18,15 +21,15 @@ class GlobalClock(object):
 
     @staticmethod
     def GetMinutes()-> int:
-        return (GlobalClock.s_Time * 30) % 60
+        return (GlobalClock.s_Minutes) % 60
 
     @staticmethod
     def GetHours()-> int:
-        return (GlobalClock.s_Time // 2) % 24
+        return int(GlobalClock.s_Minutes // 60) % 24
 
     @staticmethod
     def GetDays()-> int:
-        return (GlobalClock.s_Time // 2) // 24
+        return int(GlobalClock.s_Minutes // 60) // 24
 
     @staticmethod
     def GetYears()-> int:

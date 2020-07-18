@@ -38,7 +38,7 @@ class MoonSimulatorLayer(Engine.Layer):
 
         MapNavigator.Init(self.m_Map)
 
-        self.m_Consmonaut = Cosmonaut("ResidentialComplex", Time("0.00.00"), Time("0.08.00"))
+        self.m_Consmonaut = Cosmonaut("ResidentialComplex", Time("0.00.00"), Time("0.12.00"))
 
         self.m_SimulationSurface = pygame.Surface((1000, 700))
 

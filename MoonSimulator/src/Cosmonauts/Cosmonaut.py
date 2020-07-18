@@ -2,6 +2,8 @@ import pygame
 
 from Time import Time
 
+from Settings import Settings
+
 from .States.State import State
 
 from .States.StateContext import StateContext
@@ -20,12 +22,12 @@ class Cosmonaut(object):
         self.m_Size = 6
         self.m_Color = (255, 255, 255)
         self.m_CurrentLocation = location
-        self.m_Speed = 100
+        self.m_Speed = Settings.GetKilometersInUint() * 1 * Settings.GetTickTimeInHours()
 
         self.m_StartShift = startShift
         self.m_EndShift = endShift
 
-        self.m_CurrentTarget: NavigationNode = MapNavigator.FindNodeByName("TitaniumComplex1")
+        self.m_CurrentTarget: NavigationNode = MapNavigator.FindNodeByName("TitaniumComplex2")
 
         self.m_Context = StateContext(self)
         self.m_CurrentState: State = self.m_Context.Create(RelaxState)

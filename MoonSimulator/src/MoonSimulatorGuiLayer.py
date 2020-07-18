@@ -64,7 +64,7 @@ class MoonSimulatorGuiLayer(Engine.Layer):
         self.m_SpeedSlider = pygame_gui.elements.UIHorizontalSlider(
             relative_rect=pygame.Rect(125, self.m_LineWidth * self.m_ElementsCount, 150, self.m_LineWidth),
             start_value=10000,
-            value_range=(10, 10000),
+            value_range=(30, 10000),
             manager=manager,
             container=self.m_Window
         )
