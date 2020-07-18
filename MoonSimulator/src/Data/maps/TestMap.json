@@ -16,7 +16,7 @@
     "TitaniumComplex2":
     {
         "index"     : 2,
-        "type"      : "titanium",
+        "type"      : "helium",
         "position"  : [600, 350],
         "neighbors" : [3]
     },

@@ -4,6 +4,8 @@ import pygame
 import pygame_gui
 import Engine
 
+from ResourcesData import ResourcesData
+
 from GlobalClock import GlobalClock
 
 from DataLogger import DataLogger
@@ -18,17 +20,21 @@ class MoonSimulatorLayer(Engine.Layer):
     s_Paused: bool = False
 
     def OnAttach(self)-> None:
-        DataLogger.Init("testMap.log", "TestLog")
         self.m_SimulationSurfacePosition = (0, 0)
         self.m_Color = (35, 45, 51)
+
+        DataLogger.Init("testMap.log", "TestLog")
+        DataLogger.DisableLogging()
 
         self.m_Map = Map()
         self.m_Map.LoadMapFromJson("Data/maps/TestMap.json")
 
         MapNavigator.Init(self.m_Map)
-        print(MapNavigator.FindPath(MapNavigator.FindNodeByName("ResidentialComplex"), MapNavigator.FindNodeByName("TitaniumComplex2")))
 
         self.m_SimulationSurface = pygame.Surface((1000, 700))
+
+    def OnDetach(self)-> None:
+        print(ResourcesData.s_TitaniumAmount)
 
     def OnUpdate(self, dt: float)-> None:
         windowSurface = Engine.WindowToolKit.GetWindowSurface()

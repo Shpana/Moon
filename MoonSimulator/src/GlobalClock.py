@@ -1,26 +1,26 @@
 class GlobalClock(object):
 
-    s_Hours: int = 0
+    s_Time: int = 0
 
     @staticmethod
     def Tick()-> None:
-        GlobalClock.s_Hours += 1
+        GlobalClock.s_Time += 1
 
     @staticmethod
     def GetDate()-> str:
-        return f"D:{GlobalClock.s_Hours // 24}, T:{GlobalClock.s_Hours % 24}.00"
+        return f"D:{GlobalClock.GetDays()}, T:{GlobalClock.GetHours() % 24}.{GlobalClock.GetMinutes() % 60}"
 
     @staticmethod
     def GetMinutes()-> int:
-        return GlobalClock.s_Hours * 60
+        return GlobalClock.s_Time * 30
 
     @staticmethod
     def GetHours()-> int:
-        return GlobalClock.s_Hours
+        return GlobalClock.s_Time // 2
 
     @staticmethod
     def GetDays()-> int:
-        return GlobalClock.s_Hours // 24
+        return GlobalClock.GetHours() // 24
 
     @staticmethod
     def GetYears()-> int:

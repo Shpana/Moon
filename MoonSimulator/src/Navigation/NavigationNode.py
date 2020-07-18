@@ -13,7 +13,6 @@ class NavigationNode(object):
         self.m_Size = size
         self.m_Color = (255, 255, 255)
 
-        self.m_Active = True
         self.m_Neighbors = list()
 
     def OnUpdate(self, dt: float)-> None:
@@ -32,9 +31,6 @@ class NavigationNode(object):
 
     def AddNeighbor(self, neighbor: NavigationNode)-> None:
         self.m_Neighbors.append(neighbor)
-
-    def IsActive(self)-> bool:
-        return self.m_Active
 
     def GetName(self)-> str:
         return self.m_Name
