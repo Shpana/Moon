@@ -6,7 +6,7 @@ from .Behaivour.ResidentialBehaivours import *
 class ResidentialComplex(Complex):
 
     def __init__(self, name, position)-> None:
-        super().__init__(name, position, 15)
+        super().__init__(name, position, 20)
         self.m_Color = (195, 232, 141)
 
         self.m_ComplexBehaivour = self.m_Context.Create(ResidentialComplexBehaivour)

@@ -20,10 +20,7 @@ class MapNavigator(object):
 
     @staticmethod
     def CalculateDistance(start: NavigationNode, end: NavigationNode)-> float:
-        dx = start.GetPosition().x - end.GetPosition().x
-        dy = start.GetPosition().y - end.GetPosition().y
-
-        return math.sqrt(dx**2 + dy**2)
+        return (start.GetPosition() - end.GetPosition()).length()
 
     @staticmethod
     def FindNodeByName(name: str)-> None:
@@ -67,6 +64,21 @@ class MapNavigator(object):
                     tentativeParents[neighbour] = current
 
         return MapNavigator.DeconstructPath_(tentativeParents, end.GetName())
+
+    @staticmethod
+    def GetDistance(start: str, end: str)-> float:
+        return MapNavigator.s_NavigationWeights[start][end]
+
+    @staticmethod
+    def GetPathLenght(path)-> float:
+        totalLenght = 0.0
+        start, end = None, path[0]
+
+        for step in range(len(path) - 1):
+            start, end = end, path[step + 1]
+            totalLenght += MapNavigator.CalculateDistance(start, end)
+
+        return totalLenght
 
     @staticmethod
     def CalculateNavigationHeights_(map: Map)-> None:

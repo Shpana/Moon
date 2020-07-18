@@ -1,6 +1,6 @@
 import logging
 
-from GlobalClock import GlobalClock
+from Time import GlobalClock
 
 
 class DataLogger(object):

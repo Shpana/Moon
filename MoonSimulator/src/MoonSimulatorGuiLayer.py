@@ -4,7 +4,7 @@ import pygame
 import pygame_gui
 import Engine
 
-from GlobalClock import GlobalClock
+from Time import GlobalClock
 
 from MoonSimulatorLayer import MoonSimulatorLayer
 
@@ -54,7 +54,24 @@ class MoonSimulatorGuiLayer(Engine.Layer):
         )
         self.m_ElementsCount += 2
 
+        self.m_SpeedSliderLabel = pygame_gui.elements.UILabel(
+            relative_rect=pygame.Rect(0, self.m_LineWidth * self.m_ElementsCount, 125, self.m_LineWidth),
+            text="Speed",
+            manager=manager,
+            container=self.m_Window,
+        )
+
+        self.m_SpeedSlider = pygame_gui.elements.UIHorizontalSlider(
+            relative_rect=pygame.Rect(125, self.m_LineWidth * self.m_ElementsCount, 150, self.m_LineWidth),
+            start_value=10000,
+            value_range=(10, 10000),
+            manager=manager,
+            container=self.m_Window
+        )
+
     def OnUpdate(self, dt: float)-> None:
+        MoonSimulatorLayer.SetSimulationSpeed(self.m_SpeedSlider.get_current_value())
+
         self.m_DayLabel.set_text(f"Days: {GlobalClock.GetDays()}")
 
     def OnEvent(self, event: pygame.event.Event)-> None:

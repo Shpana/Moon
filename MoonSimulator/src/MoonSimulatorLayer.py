@@ -1,12 +1,15 @@
 import sys
+import time
 sys.path.append("../../")
 import pygame
 import pygame_gui
 import Engine
 
+from Time import Time
+
 from ResourcesData import ResourcesData
 
-from GlobalClock import GlobalClock
+from Time import GlobalClock
 
 from DataLogger import DataLogger
 
@@ -14,10 +17,14 @@ from Navigation.Map import Map
 
 from Navigation.MapNavigator import MapNavigator
 
+from Cosmonauts.Cosmonaut import Cosmonaut
+
 
 class MoonSimulatorLayer(Engine.Layer):
 
     s_Paused: bool = False
+
+    s_SimulationSpeed: float = 1 / 10000
 
     def OnAttach(self)-> None:
         self.m_SimulationSurfacePosition = (0, 0)
@@ -31,25 +38,34 @@ class MoonSimulatorLayer(Engine.Layer):
 
         MapNavigator.Init(self.m_Map)
 
-        self.m_SimulationSurface = pygame.Surface((1000, 700))
+        self.m_Consmonaut = Cosmonaut("ResidentialComplex", Time("0.00.00"), Time("0.08.00"))
 
-    def OnDetach(self)-> None:
-        print(ResourcesData.s_TitaniumAmount)
+        self.m_SimulationSurface = pygame.Surface((1000, 700))
 
     def OnUpdate(self, dt: float)-> None:
         windowSurface = Engine.WindowToolKit.GetWindowSurface()
 
         if (not MoonSimulatorLayer.s_Paused):
-            GlobalClock.Tick()
-
             self.m_SimulationSurface.fill(self.m_Color)
+
+            self.m_Consmonaut.OnUpdate(dt)
+            self.m_Consmonaut.OnRender(self.m_SimulationSurface)
+
             self.m_Map.OnUpdate(dt)
             self.m_Map.OnRender(self.m_SimulationSurface)
+
+            GlobalClock.Tick()
+
+        time.sleep(MoonSimulatorLayer.s_SimulationSpeed)
 
         windowSurface.blit(self.m_SimulationSurface, self.m_SimulationSurfacePosition)
 
     def OnEvent(self, event: pygame.event.Event)-> None:
         self.m_Map.OnEvent(event)
+
+    @staticmethod
+    def SetSimulationSpeed(speed: float)-> None:
+        MoonSimulatorLayer.s_SimulationSpeed = 1 / speed
 
     @staticmethod
     def ResumeSimulation()-> None:
