@@ -1,0 +1,16 @@
+{
+    "k1":
+    {
+        "count"         : 3,
+        "startShift"    : "0.01.00",
+        "endShift"      : "0.12.00",
+        "startLocation" : "ResidentialComplex"
+    },
+    "k2":
+    {
+        "count"         : 3,
+        "startShift"    : "0.11.00",
+        "endShift"      : "0.23.00",
+        "startLocation" : "ResidentialComplex"
+    }
+}

@@ -15,7 +15,10 @@ class TitaniumComplexBehaivour(IComplexBehaivour):
 class TitaniumDurabilityBehaivour(IDurabilityBehaivour):
 
     def OnBehaivour(self)-> None:
-        pass
+        super().OnBehaivour()
+
+        if (self.m_Durability <= 0.0):
+            self.m_Master.Diactivete()
 
 
 class TitaniumExpensesBehaivour(IExpensesBehaivour):

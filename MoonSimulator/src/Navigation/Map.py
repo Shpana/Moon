@@ -28,7 +28,7 @@ class Map(object):
             node.OnEvent(event)
 
     def LoadMapFromJson(self, filePath: str)-> None:
-        file = open(filePath)
+        file = open(filePath, "r")
 
         data = json.load(file)
 

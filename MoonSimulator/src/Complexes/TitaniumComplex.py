@@ -13,3 +13,7 @@ class TitaniumComplex(Complex):
         self.m_PorductionBehaivour = self.m_Context.Create(TitaniumPorductionBehaivour)
         self.m_ExpensesBehaivour = self.m_Context.Create(TitaniumExpensesBehaivour)
         self.m_DurabilityBehaivour = self.m_Context.Create(TitaniumDurabilityBehaivour)
+
+    @staticmethod
+    def GetStaticType()-> str:
+        return "TitaniumComplex"

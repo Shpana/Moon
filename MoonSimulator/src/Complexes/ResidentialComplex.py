@@ -13,3 +13,7 @@ class ResidentialComplex(Complex):
         self.m_PorductionBehaivour = self.m_Context.Create(ResidentialPorductionBehaivour)
         self.m_ExpensesBehaivour = self.m_Context.Create(ResidentialExpensesBehaivour)
         self.m_DurabilityBehaivour = self.m_Context.Create(ResidentialDurabilityBehaivour)
+
+    @staticmethod
+    def GetStaticType()-> str:
+        return "ResidentialComplex"

@@ -1,3 +1,4 @@
+import abc
 import pygame
 
 from Navigation.NavigationNode import NavigationNode
@@ -20,8 +21,12 @@ class Complex(NavigationNode):
         self.m_ExpensesBehaivour = self.m_Context.Create(NoExpensesBehaivour)
         self.m_DurabilityBehaivour = self.m_Context.Create(NoDurabilityBehaivour)
 
+    def OnWork(self)-> None:
+        self.m_DurabilityBehaivour.AddDurability()
+
     def OnUpdate(self, dt: float)-> None:
         if (self.IsActive()):
+            print(self.GetDurability())
             self.m_ComplexBehaivour.OnBehaivour()
             self.m_PorductionBehaivour.OnBehaivour()
             self.m_ExpensesBehaivour.OnBehaivour()
@@ -37,13 +42,15 @@ class Complex(NavigationNode):
         self.m_Active = True
 
     def Diactivete(self)-> None:
+        self.m_Color = (150, 150, 150)
         self.m_Active = False
 
     def IsBroken(self)-> bool:
         return self.m_DurabilityBehaivour.IsBroken()
 
-    def GetPorduction(self)-> float:
-        return self.m_PorductionBehaivour.GetPorduction()
-
     def GetDurability(self)-> float:
         return self.m_DurabilityBehaivour.GetDurability()
+
+    @abc.abstractstaticmethod
+    def GetStaticType()-> str:
+        pass

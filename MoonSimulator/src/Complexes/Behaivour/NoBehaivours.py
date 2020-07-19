@@ -13,7 +13,8 @@ class NoComplexBehaivour(IComplexBehaivour):
 class NoDurabilityBehaivour(IDurabilityBehaivour):
 
     def OnBehaivour(self)-> None:
-        pass
+        if (self.m_Durability <= 0.0):
+            self.m_Master.Diactivete()
 
 
 class NoExpensesBehaivour(IExpensesBehaivour):

@@ -10,3 +10,7 @@ class NodeComplex(Complex):
 
     def OnRender(self, surface: pygame.Surface)-> None:
         pass
+
+    @staticmethod
+    def GetStaticType()-> str:
+        return "NodeComplex"

@@ -15,13 +15,15 @@ class ResidentialComplexBehaivour(IComplexBehaivour):
 class ResidentialDurabilityBehaivour(IDurabilityBehaivour):
 
     def OnBehaivour(self)-> None:
-        pass
+        if (self.m_Durability <= 0.0):
+            self.m_Master.Diactivete()
 
 
 class ResidentialExpensesBehaivour(IExpensesBehaivour):
 
     def OnBehaivour(self)-> None:
         pass
+
 
 class ResidentialPorductionBehaivour(IPorductionBehaivour):
 

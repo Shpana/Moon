@@ -15,7 +15,10 @@ class HeliumComplexBehaivour(IComplexBehaivour):
 class HeliumDurabilityBehaivour(IDurabilityBehaivour):
 
     def OnBehaivour(self)-> None:
-        pass
+        super().OnBehaivour()
+
+        if (self.m_Durability <= 0.0):
+            self.m_Master.Diactivete()
 
 
 class HeliumExpensesBehaivour(IExpensesBehaivour):

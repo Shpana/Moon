@@ -17,17 +17,17 @@ from Navigation.NavigationNode import NavigationNode
 
 class Cosmonaut(object):
 
-    def __init__(self, location: str, startShift: Time, endShift: Time)-> None:
+    def __init__(self, location: str, startShift: str, endShift: str)-> None:
         self.m_Position = pygame.math.Vector2(MapNavigator.FindNodeByName(location).GetPosition())
         self.m_Size = 6
         self.m_Color = (255, 255, 255)
         self.m_CurrentLocation = location
-        self.m_Speed = Settings.GetKilometersInUint() * 1 * Settings.GetTickTimeInHours()
+        self.m_Speed = Settings.GetKilometersInUint() * 0.5 * Settings.GetTickTimeInMinutes()
 
-        self.m_StartShift = startShift
-        self.m_EndShift = endShift
+        self.m_StartShift = Time(startShift)
+        self.m_EndShift = Time(endShift)
 
-        self.m_CurrentTarget: NavigationNode = MapNavigator.FindNodeByName("TitaniumComplex2")
+        self.m_CurrentTarget: NavigationNode = ControlCenter.GetNextTarget()
 
         self.m_Context = StateContext(self)
         self.m_CurrentState: State = self.m_Context.Create(RelaxState)

@@ -1,10 +1,10 @@
 class Settings(object):
 
-    s_TickTimeInMinutes = 30
+    s_TickTimeInMinutes = 1
 
     s_TickTimeInHours = s_TickTimeInMinutes / 60
 
-    s_KilometersInUint = 50
+    s_KilometersInUint = 60
 
     s_UnitToKilometers = 1 / s_KilometersInUint
 

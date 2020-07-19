@@ -13,3 +13,7 @@ class ElectricityComplex(Complex):
         self.m_PorductionBehaivour = self.m_Context.Create(ElectricityPorductionBehaivour)
         self.m_ExpensesBehaivour = self.m_Context.Create(ElectricityExpensesBehaivour)
         self.m_DurabilityBehaivour = self.m_Context.Create(ElectricityDurabilityBehaivour)
+
+    @staticmethod
+    def GetStaticType()-> str:
+        return "ElectricityComplex"

@@ -10,42 +10,42 @@
     {
         "index"     : 1,
         "type"      : "titanium",
-        "position"  : [200, 350],
+        "position"  : [50, 350],
         "neighbors" : [0, 3]
     },
     "HeliumComplex1":
     {
         "index"     : 2,
         "type"      : "helium",
-        "position"  : [500, 350],
+        "position"  : [650, 350],
         "neighbors" : [0, 4]
     },
     "TitaniumComplex2":
     {
         "index"     : 3,
         "type"      : "titanium",
-        "position"  : [275, 220],
+        "position"  : [200, 90],
         "neighbors" : [0, 1]
     },
     "HeliumComplex2":
     {
         "index"     : 4,
         "type"      : "helium",
-        "position"  : [425, 220],
+        "position"  : [500, 90],
         "neighbors" : [0, 2]
     },
     "ElectricityComplex1":
     {
         "index"     : 5,
         "type"      : "electricity",
-        "position"  : [275, 480],
+        "position"  : [200, 610],
         "neighbors" : [0, 6]
     },
     "ElectricityComplex2":
     {
         "index"     : 6,
         "type"      : "electricity",
-        "position"  : [425, 480],
+        "position"  : [500, 610],
         "neighbors" : [0, 5]
     }
 }

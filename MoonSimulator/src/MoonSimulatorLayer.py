@@ -19,6 +19,8 @@ from Navigation.MapNavigator import MapNavigator
 
 from Cosmonauts.Cosmonaut import Cosmonaut
 
+from Cosmonauts.ControlCenter import ControlCenter
+
 
 class MoonSimulatorLayer(Engine.Layer):
 
@@ -27,36 +29,44 @@ class MoonSimulatorLayer(Engine.Layer):
     s_SimulationSpeed: float = 1 / 10000
 
     def OnAttach(self)-> None:
+        self.m_SimulationSurface = pygame.Surface((1000, 700))
         self.m_SimulationSurfacePosition = (0, 0)
         self.m_Color = (35, 45, 51)
+        self.m_TotalFrameTimeSum = 0.0
 
         DataLogger.Init("testMap.log", "TestLog")
         DataLogger.DisableLogging()
 
         self.m_Map = Map()
-        self.m_Map.LoadMapFromJson("Data/maps/TestMap.json")
+        self.m_Map.LoadMapFromJson("Data/maps/DefaultBaseMap.json")
 
         MapNavigator.Init(self.m_Map)
 
-        self.m_Consmonaut = Cosmonaut("ResidentialComplex", Time("0.00.00"), Time("0.12.00"))
-
-        self.m_SimulationSurface = pygame.Surface((1000, 700))
+        ControlCenter.Init()
+        ControlCenter.LoadCommandFromJson("Data/commands/TestCommand.json")
 
     def OnUpdate(self, dt: float)-> None:
         windowSurface = Engine.WindowToolKit.GetWindowSurface()
+        isNewSimulationFrame = self.m_TotalFrameTimeSum >= MoonSimulatorLayer.s_SimulationSpeed
 
-        if (not MoonSimulatorLayer.s_Paused):
+        if (not MoonSimulatorLayer.s_Paused and isNewSimulationFrame):
+            self.m_TotalFrameTimeSum = 0.0
             self.m_SimulationSurface.fill(self.m_Color)
 
-            self.m_Consmonaut.OnUpdate(dt)
-            self.m_Consmonaut.OnRender(self.m_SimulationSurface)
+            if (GlobalClock.GetYears() == 1):
+                print(ResourcesData.s_HeliumAmount)
+                print(ResourcesData.s_TitaniumAmount)
+                print(ResourcesData.s_ElectricityAmount)
+
+            ControlCenter.OnUpdate(dt)
+            ControlCenter.OnRender(self.m_SimulationSurface)
 
             self.m_Map.OnUpdate(dt)
             self.m_Map.OnRender(self.m_SimulationSurface)
 
             GlobalClock.Tick()
 
-        time.sleep(MoonSimulatorLayer.s_SimulationSpeed)
+        self.m_TotalFrameTimeSum += dt
 
         windowSurface.blit(self.m_SimulationSurface, self.m_SimulationSurfacePosition)
 

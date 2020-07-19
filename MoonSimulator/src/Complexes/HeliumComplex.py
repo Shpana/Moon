@@ -13,3 +13,7 @@ class HeliumComplex(Complex):
         self.m_PorductionBehaivour = self.m_Context.Create(HeliumPorductionBehaivour)
         self.m_ExpensesBehaivour = self.m_Context.Create(HeliumExpensesBehaivour)
         self.m_DurabilityBehaivour = self.m_Context.Create(HeliumDurabilityBehaivour)
+
+    @staticmethod
+    def GetStaticType()-> str:
+        return "HeliumComplex"

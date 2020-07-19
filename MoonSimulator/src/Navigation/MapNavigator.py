@@ -30,6 +30,9 @@ class MapNavigator(object):
 
     @staticmethod
     def FindPath(start: NavigationNode, end: NavigationNode)-> list:
+        if (not end.IsActive()):
+            return None
+
         nodes = MapNavigator.s_MapHandle.GetNodes()
         navigationHeights = MapNavigator.s_NavigationWeights
 
@@ -100,3 +103,7 @@ class MapNavigator(object):
             cursor = tentativeParents.get(cursor)
 
         return list(reversed(path))
+
+    @staticmethod
+    def GetMapHandle()-> Map:
+        return MapNavigator.s_MapHandle
